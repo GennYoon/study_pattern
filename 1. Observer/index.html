@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Observer Pattern</title>
+  <input type="text" id="input" />
+  <h1 id="output"></h1>
+</head>
+<body>
+
+  <script>
+    // Observer Pattern
+    class EventObserver {
+      constructor() {
+        this.observers = [];
+      }
+
+      subscribe(fn) {
+        this.observers.push(fn);
+      }
+
+      unsubscribe(fn) {
+        this.observers = this.observers.filter((subscriber) => subscriber !== fn);
+      }
+
+      broadcast(data) {
+        this.observers.forEach((subscriber) => subscriber(data));
+      }
+
+    }
+
+    // 새로운 Observer 이벤트를 생성합니다.
+    const observer = new EventObserver();
+    // 이용한 DOM을 변수에 넣어 재활용 합니다.
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+
+    // 변화될 결과를 함수로 정의합니다.
+    const change = (text) => {
+      output.innerHTML = text;
+    }
+
+    // 정의된 함수를 생성한 Observer 이벤트에 구독시킵니다.
+    observer.subscribe(change);
+
+    // 이벤트가 일어날때, Oberver 이벤트에 등록된 내용을 발휘합니다. 내용이 발생되면서 결과함수가 실행됩니다.
+    input.addEventListener("keyup", (e) => observer.broadcast(e.target.value));
+
+  </script>
+</body>
+</html>
