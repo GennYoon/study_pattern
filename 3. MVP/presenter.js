@@ -1,16 +1,14 @@
-function MVP_PRESENTER(_view) {
-  this.view = _view;
-  this.model;
+class PRESENTER {
+  constructor(model, view) {
+    this.model = model;
+    this.view = view;
+    
+    this.model.subscribe(() => {
+      this.view.render(this.model.getText());
+    });
 
-  // model 설정
-  this.setModel = (_model) => {
-    this.model = _model;
-    view.render(this.model.getText());
+    this.view.handleChange((event) => {
+      this.model.setText(event.target.value);
+    });
   }
-
-  // view에서 설정한 변화를 설정
-  this.view.handleChange((event) => {
-    this.model.setText(event.target.value);
-    view.render(this.model.getText());
-  })
 }

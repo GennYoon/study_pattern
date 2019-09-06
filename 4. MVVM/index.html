@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MVC Pattern</title>
+    <title>MVVM Pattern</title>
   </head>
   <body>
-    <input type="text" id="input" />
-    <h1 id="output"></h1>
+    <div id="app">
+      <input type="text" id="input" />
+      <h1 id="output"></h1>
+    </div>
 
     <script src="./view.js"></script>
     <script src="./model.js"></script>
-    <script src="./controller.js"></script>
+    <script src="./viewmodel.js"></script>
     <script>
       const model = new MODEL("");
-      const view = new VIEW(model);
-      new CONTROLLER(model, view);
+      const vm = new VIEWMODEL(model);
+      new VIEW(vm);
     </script>
   </body>
 </html>

@@ -12,21 +12,21 @@
       // Observer Pattern
       class EventObserver {
         constructor() {
-          this.observers = [];
+          this.listeners = [];
         }
 
-        subscribe(fn) {
-          this.observers.push(fn);
+        subscribe(_listener) {
+          this.listeners.push(_listener);
         }
 
-        unsubscribe(fn) {
-          this.observers = this.observers.filter(
-            subscriber => subscriber !== fn
+        unsubscribe(_listener) {
+          this.listeners = this.listeners.filter(
+            listener => listener !== _listener
           );
         }
 
-        broadcast(data) {
-          this.observers.forEach(subscriber => subscriber(data));
+        notify(data) {
+          this.listeners.forEach(listener => listener(data));
         }
       }
 
@@ -45,7 +45,7 @@
       observer.subscribe(change);
 
       // 이벤트가 일어날때, Oberver 이벤트에 등록된 내용을 발휘합니다. 내용이 발생되면서 결과함수가 실행됩니다.
-      input.addEventListener("keyup", e => observer.broadcast(e.target.value));
+      input.addEventListener("keyup", e => observer.notify(e.target.value));
     </script>
   </body>
 </html>

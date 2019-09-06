@@ -1,14 +1,14 @@
-function MVP_VIEW() {
-  const input = document.getElementById("input");
-  const output = document.getElementById("output");
-
-  // 화면을 최신화시켜주는 Render
-  this.render = (text) => {
-    output.innerHTML = text;
+class VIEW {
+  constructor() {
+    this.input = document.getElementById("input");
+    this.output = document.getElementById("output");
   }
 
-  // 이벤트 선언
-  this.handleChange = (handler) => {
-    input.addEventListener("keyup", handler);
+  render = (text) => {
+    this.output.innerHTML = text;
+  }
+
+  handleChange = (handler) => {
+    this.input.addEventListener("keyup", handler);
   }
 }

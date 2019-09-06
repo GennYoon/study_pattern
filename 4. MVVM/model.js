@@ -9,9 +9,7 @@ class MODEL {
   }
 
   unsubscribe = (_listener) => {
-    this.listeners = this.listeners.filter(
-      listener => listener !== _listener
-    );
+    this.listeners = this.listeners.filter(listener => listener !== _listener);
   }
 
   notify = (text) => {
@@ -21,7 +19,7 @@ class MODEL {
   getText = () => {
     return this.text;
   }
-
+  
   setText = (text) => {
     this.text = text;
     this.notify();
